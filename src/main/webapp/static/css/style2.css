@@ -1,0 +1,113 @@
+@charset "ISO-8859-1";
+
+.form-container {
+    padding-left: 280px;
+    padding-right: 280px;
+  background-color: white !important;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid black;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+h1
+{
+	text-align: center;
+}
+
+input[type="file"] {
+    width: calc(100% - (80px + 50px));
+    margin: 4px
+}
+
+input[type="submit"] {
+   
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+input[type="submit"]:hover {
+   
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.form-actions{
+	
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+
+
+/* login page */
+
+
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+}
+
+img.avatar {
+  width: 30%;
+  border-radius: 50%;
+}
+
+.form-horizontal_1{
+	
+	padding-left: 250px;
+	padding-right: 250px;
+	
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+#button
+{
+ width: 10%;
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+#button:hover {
+   
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+
+.wrap {
+    width: 352px;
+}
+
+.wrap table {
+    width: 300px;
+    table-layout: fixed;
+}
+
+table tr td {
+    padding: 5px;
+    border: 1px solid #eee;
+    width: 100px;
+    word-wrap: break-word;
+}

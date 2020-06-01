@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+
+<head>
+<meta charset="ISO-8859-1">
+<title>StudyHub</title>
+<!-- Custom stlylesheet -->
+ <link type="text/css" rel="stylesheet" href="static/css/style2.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+	
+
+ <style>
+.imagecontainer {
+	position: relative;
+	width: 100%;
+	max-width: 400px;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .3s ease;
+	border-radius: 50%;
+}
+
+.imagecontainer:hover .overlay {
+	opacity: 1;
+}
+
+.icon {
+	color: white;
+	font-size: 40px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.fa-trash:hover {
+	color: red;
+}
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: 1px solid black;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.container
+{
+    margin-top: 15px !important;
+
+}
+input[type="submit"] {
+   
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+input[type="submit"]:hover {
+   
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+</style> 
+
+
+
+</head>
+
+
+<body>
+
+
+
+
+
+	<!-- Header -->
+	<header id="header">
+
+
+
+
+
+
+
+
+		<!-- /Navigation -->
+
+		</div>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+
+
+
+				<h2>User Details</h2>
+
+				<div class="alert alert-success alert-dismissible"
+					th:if="${successmessage}">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong th:text="${successmessage}"></strong>
+				</div>
+				<div class="alert alert-danger alert-dismissible"
+					th:if="${errormessage}">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong th:text="${errormessage}"></strong>
+				</div>
+
+
+
+				<form action="#" th:action="@{${isAdd}?'/save':'/update'}"
+					th:object="${user}" method="post" enctype="multipart/form-data">
+
+					<div class="form-group">
+						<label>Username:</label> <input type="text" class="form-control"
+							id="username" placeholder="User Name" th:field="*{username}">
+					</div>
+
+
+					<div class="form-group">
+						<label>FirstName:</label> <input type="text" class="form-control"
+							id="firstName" placeholder="First Name" th:field="*{firstName}">
+					</div>
+
+					<div class="form-group">
+						<label>LastName:</label> <input type="text" class="form-control"
+							id="lastName" placeholder="Last Name" th:field="*{lastName}">
+					</div>
+
+
+					<div class="form-group">
+						<label>Password:</label> <input type="text" class="form-control"
+							id="password" placeholder="Password" th:field="*{password}">
+					</div>
+
+					<div class="form-group">
+						<label>Email:</label> <input type="text" class="form-control"
+							id="email" placeholder="Email" th:field="*{email}">
+					</div>
+
+					<div class="form-group">
+						<label>PhoneNumber:</label> <input type="text"
+							class="form-control" id="phoneNumber" placeholder="Phone Number"
+							th:field="*{phoneNumber}">
+					</div>
+
+					<div class="form-group">
+						<input type="file"  id="files"
+							placeholder="Upload Files" th:field="*{files}"
+							multiple="multiple">
+					</div>
+
+					<div class="form-group">
+						<span th:each="file, itrStat : ${userfiles}"
+							class="imagecontainer" th:id="'imageindex'+${itrStat.index}">
+							<img th:src="@{'/images/'+${file.modifiedFileName}}"
+							style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px;"
+							class="image"
+							th:if="${file.fileExtension != 'pdf' and file.fileExtension != 'xls' and file.fileExtension != 'xlsx'}">
+							<img th:src="@{'/img/pdf.png'}"
+							style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px;"
+							class="image" th:if="${file.fileExtension == 'pdf'}"> <img
+							th:src="@{'/img/excel.png'}"
+							style="width: 80px; height: 80px; border-radius: 50%; margin-left: 10px;"
+							class="image"
+							th:if="${file.fileExtension == 'xls' or file.fileExtension == 'xlsx'}">
+							<span class="overlay"> <a href="#"
+								class="icon image-confirm-delete" title="image delete"
+								th:attr="data-id=${itrStat.index}, data-name=${file.modifiedFileName}">
+									<i class="fa fa-trash" style="color: red;"></i>
+							</a>
+						</span>
+						</span>
+					</div>
+					<input type="hidden" class="form-control"
+						th:field="*{removeImages}" id="removeImages"> <input
+						type="hidden" class="form-control" th:field="*{id}">
+
+
+
+
+
+
+
+
+					<div class="form-group">
+						<input type="submit" value="update" class="btn btn-primary"
+							></input>
+						<input type="submit" value="cancel" class="btn btn-primary"
+							></input>
+
+					</div>
+
+
+
+
+				</form>
+				<hr />
+			</div>
+
+
+
+			<script
+				src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+			<script
+				src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+			<script type="text/javascript">
+				$(function() {
+					var images = [];
+					$('.image-confirm-delete').on('click', function(e) {
+						e.preventDefault();
+						var id = $(this).data('id');
+						var name = $(this).data('name');
+						images.push(name);
+						$('#removeImages').val(images);
+						$('#imageindex' + id).hide();
+					})
+				});
+			</script>
+</body>
+</html>
